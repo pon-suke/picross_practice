@@ -106,7 +106,7 @@ function draw_hint() {
         var temp = split(txt_hint_column[column], ',');
         for (let i = 0; i < temp.length; i++) {
             noStroke();
-            text(temp[i], (column + 1) * size + 100, 100 - (temp.length - i - 1) * size);
+            text(temp[i], (column + 1) * size + 100, 100 - (temp.length - i - 1) * 12);
         }
     }
 }
