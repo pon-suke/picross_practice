@@ -53,8 +53,7 @@ function setup() {
             blocks[i][j].display();
         }
     }
-
-    console.log(size);
+    draw_line();
 }
 
 function draw() {
@@ -71,6 +70,9 @@ function draw() {
                     click = true;
                 }
             }
+
+            draw_line();
+
             if (isEqualArray(answer, blocks)) {
                 fill(255, 0, 0);
                 textAlign(CENTER);
@@ -107,6 +109,16 @@ function draw_hint() {
         for (let i = 0; i < temp.length; i++) {
             noStroke();
             text(temp[i], (column + 1) * size + 100, 100 - (temp.length - i - 1) * 12);
+        }
+    }
+}
+
+function draw_line(){
+    for (let i = 0; i < blocks.length/5+1; i++) {
+        for (let j = 0; j < blocks[i].length/5+1; j++) {
+            stroke(0);
+            line(i * size*5 +100, 0, i*size*5+100, blocks[i].length*size+100);
+            line(0, j * size*5+100, blocks.length*size+100, j * size*5+100);
         }
     }
 }
