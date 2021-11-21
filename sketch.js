@@ -16,7 +16,7 @@ var tempRow;
 let answer = [];
 
 function preload() {
-    txt = loadStrings('./question.txt');
+    txt = loadStrings('./practice.txt');
     txt_hint_row = loadStrings('./hint_row.txt');
     txt_hint_column = loadStrings('./hint_column.txt');
 }
@@ -95,7 +95,7 @@ function draw_hint() {
     for (let row = 0; row < txt_hint_row.length; row++) {
         stroke(0);
         line(0, (row + 1) * size + 100, 100, (row + 1) * size + 100);
-        textAlign(RIGHT);
+        textAlign(RIGHT, BOTTOM);
         noStroke();
         text(txt_hint_row[row], 100, (row + 1) * size + 100);
     }
@@ -112,15 +112,24 @@ function draw_hint() {
         }
     }
 }
-
 function draw_line(){
-    for (let i = 0; i < blocks.length/5+1; i++) {
-        for (let j = 0; j < blocks[i].length/5+1; j++) {
-            stroke(0);
-            line(i * size*5 +100, 0, i*size*5+100, blocks[i].length*size+100);
-            line(0, j * size*5+100, blocks.length*size+100, j * size*5+100);
+    for (let i = 1; i < blocks.length/5; i++) {
+        for (let j = 1; j < blocks[i].length/5; j++) {
+            stroke(0, 255, 255);
+            line(i * size*5 +100, 100, i*size*5+100, blocks[i].length*size+100);
+            line(100, j * size*5+100, blocks.length*size+100, j * size*5+100);
         }
     }
+    for (let i = 1; i < blocks.length/10; i++) {
+        for (let j = 1; j < blocks[i].length/10; j++) {
+            stroke(255, 0, 0);
+            line(i * size*10 +100, 100, i*size*10+100, blocks[i].length*size+100);
+            line(100, j * size*10+100, blocks.length*size+100, j * size*10+100);
+        }
+    }
+    noFill();
+    stroke(0);
+    rect(100, 100, blocks.length*size, blocks[0].length*size);
 }
 
 function isEqualArray(a, b) {
