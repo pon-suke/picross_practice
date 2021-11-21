@@ -113,6 +113,7 @@ function draw_hint() {
     }
 }
 function draw_line(){
+    strokeWeight(2);
     for (let i = 1; i < blocks.length/5; i++) {
         for (let j = 1; j < blocks[i].length/5; j++) {
             stroke(0, 255, 255);
@@ -130,6 +131,7 @@ function draw_line(){
     noFill();
     stroke(0);
     rect(100, 100, blocks.length*size, blocks[0].length*size);
+    strokeWeight(1);
 }
 
 function isEqualArray(a, b) {
