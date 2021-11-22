@@ -202,7 +202,6 @@ function load_localStorage() {
                 for (let j = 0; j < blocks[i].length; j++) {
                     blocks[i][j].x=data[i][j].x;
                     blocks[i][j].y=data[i][j].y;
-                    blocks[i][j].size=data[i][j].size;
                     blocks[i][j].status=data[i][j].status;
                     blocks[i][j].change=data[i][j].change;
                 }
