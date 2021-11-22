@@ -46,6 +46,8 @@ function setup() {
         }
     }
 
+    load_localStorage();
+
     blocks_last = JSON.parse(JSON.stringify(blocks));
     background(220);
     draw_undo();
@@ -103,6 +105,20 @@ function mousePressed() {
         }
     } else {
         blocks_last = JSON.parse(JSON.stringify(blocks));
+    }
+}
+
+function mouseReleased(){
+    save_localStorage();
+}
+
+function keyTyped(){
+    if(keyCode === 13){
+        if(mouseIsPressed){
+            if (10 <= mouseX && mouseX <= 90 && 20 <= mouseY && mouseY <= 80) {
+                remove_localStorage();
+            }
+        }
     }
 }
 
@@ -175,6 +191,43 @@ function isEqualArray(a, b) {
         }
     }
     return isEqual;
+}
+
+function load_localStorage() {
+    if (window.localStorage) {
+        let data = localStorage.getItem('blocks');
+        data = JSON.parse(data);
+        if (data != null) {
+            for (let i = 0; i < blocks.length; i++) {
+                for (let j = 0; j < blocks[i].length; j++) {
+                    blocks[i][j].x=data[i][j].x;
+                    blocks[i][j].y=data[i][j].y;
+                    blocks[i][j].size=data[i][j].size;
+                    blocks[i][j].status=data[i][j].status;
+                    blocks[i][j].change=data[i][j].change;
+                }
+            }
+        }
+    }
+}
+
+function save_localStorage() {
+    if (window.localStorage) {
+        let json = JSON.stringify(blocks);
+        localStorage.setItem('blocks', json);
+    }
+}
+
+function remove_localStorage(){
+    if (window.localStorage) {
+        localStorage.removeItem('blocks');
+        for (let i = 0; i < answer.length; i++) {
+            blocks[i] = [];
+            for (let j = 0; j < answer[i].length; j++) {
+                blocks[i].push(new Block(j, i, size, 0, false));
+            }
+        }
+    }
 }
 
 class Block {
